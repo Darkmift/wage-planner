@@ -1,76 +1,74 @@
 <!doctype html>
 <html>
+
 <head>
     <title>Wage Planner</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="Lib/CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="CSS/main.css">
 </head>
+
 <body>
+    <div class="container">
+        <div class="row containerGrid">
+            <div class="col-sm-12 border margin-vertical grey-color">
+                <h2 class="text-center">Monthly Wage Planner</h2>
+            </div>
 
-    <div class="container" id="form-holder">
-    <h2>Wage Planner For The Month</h2>
-    <div class="row">
+            <div class="col-sm-12 border margin-vertical formGrid">
 
-                <div class="col-sm-6">
-                        <label>Monthly Wage</label>
-                        <input type="text" class="form-control" id="monthly_wage" />
+                <div class="">
+                    <div class="row grey-color border margin-vertical">
+                        <div class="col-12">
+                            <h4 class="text-center">Monthly Wage Planner</h4>
+                        </div>
+                        <div class="col-6">
+                            <label>Bill Name</label>
+                            <input type="text" class="form-control" id="billName" />
+                        </div>
+                        <div class="col-6">
+                            <label>Bill Amount</label>
+                            <input type="number" class="form-control" id="billAmount" />
+                        </div>
+                        <div class="col-6">
+                            <label>Income</label>
+                            <input type="number" class="form-control" id="income" />
+                        </div>
+                        <div class="col-6">
+                            <label>PayDay</label>
+                            <input type="date" class="form-control" id="payDate" />
+                        </div>
+                        <div class="col-12">
+                            <hr>
+                        </div>
+                        <div class="col-8 offset-2">
+                            <button class="btn btn-success form-control" id="addBill">
+                                <i class="fas fa-plus-square"></i>&nbsp;&nbsp;Add Bill
+                            </button>
+                        </div>
                     </div>
-            
-                    <div class="col-sm-6">
-                            <label>Phone Bill</label>
-                            <input type="text" class="form-control" id="phone_bill" />
+                </div>
+                <!--  -->
+                <div class="border margin-vertical grey-color" id="billList">
+                    <div class="col-12" id="billInputs">
+                        <h4 class="text-center">Bill Pile</h4>
                     </div>
-                                
-                    <div class="col-sm-6">
-                        <label>House Rent</label>
-                        <input type="text" class="form-control" id="house_rent" />
+                    <div class="col-12">
+                        <hr>
                     </div>
-                               
-                    <div class="col-sm-6">
-                        <label>Loan Payment</label>
-                        <input type="text" class="form-control" id="loan_payment" />
+                    <div class="col-8 offset-2">
+                        <button class="btn btn-success form-control">
+                            <i class="fas fa-calculator"></i>&nbsp;&nbsp;Calculate
+                        </button>
                     </div>
-
-                    <div class="col-sm-6">
-                        <label>Internet</label>
-                        <input type="text" class="form-control" id="internet" />
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label>Car Insurance</label>
-                        <input type="text" class="form-control" id="car_insurance" />
-                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="row">
-            
-    
-            <div class="col-sm-6">
-                <label>Car Tax</label>
-                <input type="text" class="form-control" id="car_tax" />
-            </div>
-                
-            <div class="col-sm-6">
-                <label>Subscriptions</label>
-                <input type="text" class="form-control" id="subscriptions" />
-            </div>
-
-            <div class="col-sm-6">
-                <label>Furniture</label>
-                <input type="text" class="form-control" id="furniture" />
-            </div>
-
-                
-            <div class="col-sm-6">
-                <label>Next Pay Day</label>
-                <input type="date" class="form-control" id="next_payday" />
-            </div>
-
-    </div>
-        
-        <button class="btn btn-primary mt-3" id="submit-button">Caclulate</button>
-
-    </div>
-
-    <script src="js/wage-planner.js"></script>
+    <script src="Lib/JS/jquery-3.3.1.slim.min.js"></script>
+    <script src="Lib/JS/popper.min.js"></script>
+    <script src="Lib/JS/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
