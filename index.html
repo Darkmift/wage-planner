@@ -23,19 +23,40 @@
                         <h4 class="text-center">Payday details:</h4>
                     </div>
                     <div class="col-sm-12 row">
+                        <!-- row 1 income/payday -->
                         <div class="col-sm-6">
                             <label>Net Income</label>
-                            <input type="text" class="form-control" id="income" />
+                            <input type="number" class="form-control" id="incomeInput" />
                         </div>
                         <div class="col-sm-6">
                             <label>Payday</label>
                             <div class="input-group">
-                                <input type="date" class="form-control" id="payDate">
+                                <input type="date" class="form-control" id="payDateInput">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-success">Update</button>
+                                    <button type="button" class="btn btn-success" id="incomeAdd">
+                                        Update
+                                    </button>
                                 </div>
                             </div>
                         </div>
+                        <!-- row 2 income/payday errors -->
+                        <div class="col-sm-6">
+                            <span>
+                                <small id="incomeError" class="text-danger">
+                                    Please add income amount.
+                                </small>
+                                &nbsp;
+                            </span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span>
+                                <small id="payDayError" class="text-danger">
+                                    Please select pay date.
+                                </small>
+                                &nbsp;
+                            </span>
+                        </div>
+                        <!-- row 3 billname/billamount -->
                         <div class="col-sm-6">
                             <label>Bill name</label>
                             <input type="text" class="form-control" id="billName" />
@@ -45,15 +66,45 @@
                             <div class="input-group">
                                 <input type="number" class="form-control" id="billAmount">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-success">Add bill</button>
+                                    <button type="button" class="btn btn-success" id="addBill">
+                                        Add bill
+                                    </button>
                                 </div>
                             </div>
                         </div>
+                        <!-- row 4 billname/billamount errors -->
+                        <div class="col-sm-6">
+                            <span>
+                                <small id="billNameError" class="text-danger">
+                                    Bill name must be 4 characters long.
+                                </small>
+                                &nbsp;
+                            </span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span>
+                                <small id="billAmountError" class="text-danger">
+                                    Please add bill amount.
+                                </small>
+                                &nbsp;
+                            </span>
+                        </div>
                     </div>
-                    <div class="col-sm-12" id="billContainer">
-                        <hr>
-                        <h4 class="text-center">Bills</h4>
-                        <hr>
+                    <div class="col-sm-12 row" id="billContainer">
+                        <div class="col-sm-12">
+                            <hr>
+                            <h4 class="text-center">Bills</h4>
+                            <hr>
+                        </div>
+                        <!-- income input -->
+                        <div class="col-sm-6">
+                            <label>Net Income</label>
+                            <input type="number" class="form-control" id="income" disabled />
+                        </div>
+                        <div class="col-sm-6">
+                            <label>PayDate</label>
+                            <input type="date" class="form-control" id="payDate" disabled />
+                        </div>
                     </div>
                 </div>
             </div>

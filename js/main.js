@@ -1,28 +1,42 @@
-$('#billList').hide();
+$(".text-danger").hide();
 
-$("#addBill").click(e => {
-  e.preventDefault();
-  let billName = $("#billName").val();
-  let billAmount = parseInt($("#billAmount").val());
-  console.log(billName.length,billAmount);
-  if (billName.length > 2 && billAmount > 0) {
-    $("#billInputs").append(addBill(billName, billAmount));
-    $('#billList').show();
-  } else {
-    alert("Please make suree to add bill name and bill amount");
-  }
+$("#incomeAdd").click(function(e) {
+  let income = $("#incomeInput");
+  let payDate = $("#payDateInput");
+  let incomeError = $("#incomeError");
+  let payDayError = $("#payDayError");
+
+  income.val() < 1
+    ? hasError(income, incomeError, true)
+    : hasError(income, incomeError, false);
+
+  Date.parse(payDate.val()) == NaN || isNaN(parseInt(payDate.val())) == true
+    ? hasError(payDate, payDayError, true)
+    : hasError(payDate, payDayError, false);
 });
 
-function addBill(name, num) {
-  let inputGroup = $("<span>");
-  let inputLabel = $("<label>", {
-    text: name
-  });
-  let input = $("<input>", {
-    type: "number",
-    value: num,
-    class: "form-control"
-  });
-  inputGroup.append([inputLabel, input]);
-  return inputGroup;
+$("#addBill").click(function(e) {
+  let billName = $("#billName");
+  let billAmount = $("#billAmount");
+  let billNameError = $("#billNameError");
+  let billAmountError = $("#billAmountError");
+
+  billName.val().length < 4
+    ? hasError(billName, billNameError, true)
+    : hasError(billName, billNameError, false);
+
+  billAmount.val() < 1
+    ? hasError(billAmount, billAmountError, true)
+    : hasError(billAmount, billAmountError, false);
+});
+
+function hasError(input, inputError, hasError) {
+  let errClass = "is-invalid";
+  if (hasError === true) {
+    input.addClass(errClass);
+    inputError.show();
+  } else {
+    input.removeClass(errClass);
+    inputError.hide();
+  }
 }
