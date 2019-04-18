@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Wage Planner</title>
+    <link rel="stylesheet" href="Lib/CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="CSS/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row containerGrid">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 border margin-vertical grey-color">
+                <h2 class="text-center">Monthly Wage Planner</h2>
+            </div>
+
+            <div class="col-sm-12 row border margin-vertical">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10 row border margin-vertical grey-color">
+                    <div class="col-sm-12">
+                        <h4 class="text-center">Payday details:</h4>
+                    </div>
+                    <div class="col-sm-12 row">
+                        <div class="col-sm-6">
+                            <label>Net Income</label>
+                            <input type="text" class="form-control" id="income" />
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Payday</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="payDate">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-success">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Bill name</label>
+                            <input type="text" class="form-control" id="billName" />
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Bill amount</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="billAmount">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-success">Add bill</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" id="billContainer">
+                        <hr>
+                        <h4 class="text-center">Bills</h4>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Lib/JS/jquery-3.3.1.slim.min.js"></script>
+    <script src="Lib/JS/popper.min.js"></script>
+    <script src="Lib/JS/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
