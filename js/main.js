@@ -6,13 +6,12 @@ $("#incomeAdd").click(function(e) {
   let incomeError = $("#incomeError");
   let payDayError = $("#payDayError");
 
-  income.val() < 1
-    ? hasError(income, incomeError, true)
-    : hasError(income, incomeError, false);
-
-  Date.parse(payDate.val()) == NaN || isNaN(parseInt(payDate.val())) == true
-    ? hasError(payDate, payDayError, true)
-    : hasError(payDate, payDayError, false);
+  isValid(income.val() < 1, income, incomeError);
+  isValid(
+    Date.parse(payDate.val()) == NaN || isNaN(parseInt(payDate.val())) == true,
+    payDate,
+    payDayError
+  );
 });
 
 $("#addBill").click(function(e) {
@@ -21,13 +20,8 @@ $("#addBill").click(function(e) {
   let billNameError = $("#billNameError");
   let billAmountError = $("#billAmountError");
 
-  billName.val().length < 4
-    ? hasError(billName, billNameError, true)
-    : hasError(billName, billNameError, false);
-
-  billAmount.val() < 1
-    ? hasError(billAmount, billAmountError, true)
-    : hasError(billAmount, billAmountError, false);
+  isValid(billName.val().length < 4, billName, billNameError);
+  isValid(billAmount.val() < 1, billAmount, billAmountError);
 });
 
 function hasError(input, inputError, hasError) {
@@ -39,4 +33,10 @@ function hasError(input, inputError, hasError) {
     input.removeClass(errClass);
     inputError.hide();
   }
+}
+
+function isValid(logic, input, inputError) {
+  logic
+    ? hasError(input, inputError, true)
+    : hasError(input, inputError, false);
 }
