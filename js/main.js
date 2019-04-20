@@ -1,30 +1,31 @@
 $(".text-danger").hide();
 
-$("#incomeAdd").click(function(e) {
-  let income = $("#incomeInput");
-  let payDate = $("#payDateInput");
-  let incomeError = $("#incomeError");
-  let payDayError = $("#payDayError");
+let income = $("#incomeInput");
+let payDate = $("#payDateInput");
+let incomeError = $("#incomeError");
+let payDayError = $("#payDayError");
 
-  if (
-    isValid(income.val() < 1, income, incomeError) &&
-    isValid(
-      Date.parse(payDate.val()) == NaN ||
-        isNaN(parseInt(payDate.val())) == true,
-      payDate,
-      payDayError
-    )
-  ) {
-    //add data
+let billName = $("#billName");
+let billAmount = $("#billAmount");
+let billNameError = $("#billNameError");
+let billAmountError = $("#billAmountError");
+
+$("input").focus(function(e) {
+  $(this).removeClass("is-invalid");
+});
+
+$("#incomeAdd").click(function(e) {
+  let dateIsNaN = isNaN(Date.parse(payDate.val()));
+  //isValid 1st param "hasError" - true if error
+  if (isValid(income.val() < 1, income, incomeError)) {
+    $("#income").val(income.val());
+  }
+  if (isValid(dateIsNaN, payDate, payDayError)) {
+    $("#payDate").val(payDate.val());
   }
 });
 
 $("#addBill").click(function(e) {
-  let billName = $("#billName");
-  let billAmount = $("#billAmount");
-  let billNameError = $("#billNameError");
-  let billAmountError = $("#billAmountError");
-
   if (
     isValid(billName.val().length < 4, billName, billNameError) &&
     isValid(billAmount.val() < 1, billAmount, billAmountError)
@@ -47,7 +48,9 @@ function hasError(input, inputError, hasError) {
 }
 
 function isValid(logic, input, inputError) {
-  logic
+  let response = logic
     ? hasError(input, inputError, true)
     : hasError(input, inputError, false);
+  console.log("TCL: isValid -> response", response, input);
+  return response;
 }
