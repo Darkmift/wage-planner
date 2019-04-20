@@ -34,7 +34,7 @@
                                 <input type="date" class="form-control" id="payDateInput">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-success" id="incomeAdd">
-                                        Update
+                                        <i class="fas fa-plus-square"></i>&nbsp;Update
                                     </button>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                 <input type="number" class="form-control" id="billAmount">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-success" id="addBill">
-                                        Add bill
+                                        <i class="fas fa-plus-square"></i>&nbsp;Add bill
                                     </button>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-sm-12 row" id="billContainer">
+                    <form class="col-sm-12 row">
                         <div class="col-sm-12">
                             <hr>
                             <h4 class="text-center">Bills</h4>
@@ -105,7 +105,20 @@
                             <label>PayDate</label>
                             <input type="date" class="form-control" id="payDate" disabled />
                         </div>
-                    </div>
+                        <div id="billContainer" class="col-sm-12">
+                            <hr>
+                        </div>
+                        <div id="billContainer" class="col-sm-12 row">
+
+                        </div>
+                        <div id="billContainer" class="col-sm-12">
+                            <hr>
+                        </div>
+                        <div class="col-sm-6 offset-3">
+                            <button type="submit" class="btn btn-primary btn-block" id="billSubmit"><i
+                                    class="fas fa-paper-plane"></i>&nbsp;Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

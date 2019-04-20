@@ -1,4 +1,4 @@
-$(".text-danger").hide();
+$(".text-danger , #billSubmit").hide();
 
 $("input").focus(function(e) {
   $(this).removeClass("is-invalid");
@@ -34,6 +34,7 @@ $("#addBill").click(function(e) {
   let validNum = isValid(billAmount.val() < 1, billAmount, billAmountError);
   if (validName && validNum) {
     $("#billContainer").append(renderBill(billName.val(), billAmount.val()));
+    $("#billSubmit").show();
   }
 });
 
@@ -82,7 +83,7 @@ function renderBill(billName, billAmount) {
     // type:'',
     class: "btn btn-danger",
     data_id: billName,
-    text: "X"
+    html: `<i class="fas fa-trash-alt"></i>`
   }).click(function() {
     $(`#${$(this).attr("data_id")}`).remove();
   });
