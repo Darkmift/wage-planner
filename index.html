@@ -75,6 +75,14 @@
                         <!-- row 4 billname/billamount errors -->
                         <div class="col-sm-6">
                             <span>
+                                <small id="billNameExist" style="font-weight:bold" class="text-warning">
+                                    [placeholder]
+                                </small>
+                                &nbsp;
+                            </span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span>
                                 <small id="billNameError" class="text-danger">
                                     Bill name must be 4 characters long.
                                 </small>
@@ -90,7 +98,7 @@
                             </span>
                         </div>
                     </div>
-                    <form class="col-sm-12 row">
+                    <form id="formBills" class="col-sm-12 row">
                         <div class="col-sm-12">
                             <hr>
                             <h4 class="text-center">Bills</h4>
@@ -109,7 +117,6 @@
                             <hr>
                         </div>
                         <div id="billContainer" class="col-sm-12 row">
-
                         </div>
                         <div id="billContainer" class="col-sm-12">
                             <hr>
@@ -126,7 +133,7 @@
     <script src="Lib/JS/jquery-3.3.1.slim.min.js"></script>
     <script src="Lib/JS/popper.min.js"></script>
     <script src="Lib/JS/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js" type="module"></script>
 </body>
 
 </html>

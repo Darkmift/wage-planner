@@ -1,15 +1,17 @@
-$(".text-danger , #billSubmit").hide();
+import { hasError, isValid, renderBill } from "./helpers.js";
+
+let income = $("#incomeInput");
+let payDate = $("#payDateInput");
+let incomeError = $("#incomeError");
+let payDayError = $("#payDayError");
+
+$(".text-danger ,.text-warning, #billSubmit").hide();
 
 $("input").focus(function(e) {
   $(this).removeClass("is-invalid");
 });
 
 $("#incomeAdd").click(function(e) {
-  let income = $("#incomeInput");
-  let payDate = $("#payDateInput");
-  let incomeError = $("#incomeError");
-  let payDayError = $("#payDayError");
-
   let dateIsNaN = isNaN(Date.parse(payDate.val()));
   //isValid 1st param "hasError" - true if error
   if (isValid(income.val() < 1, income, incomeError)) {
@@ -25,6 +27,11 @@ $("#incomeAdd").click(function(e) {
 });
 
 $("#addBill").click(function(e) {
+  if ($("#income").val() < 1 || $("#payDate").val() == "") {
+    hasError(income, incomeError, true);
+    hasError(payDate, payDayError, true);
+    return;
+  }
   let billName = $("#billName");
   let billAmount = $("#billAmount");
   let billNameError = $("#billNameError");
@@ -32,64 +39,24 @@ $("#addBill").click(function(e) {
 
   let validName = isValid(billName.val().length < 2, billName, billNameError);
   let validNum = isValid(billAmount.val() < 1, billAmount, billAmountError);
-  if (validName && validNum) {
+  let inputExist = false;
+
+  $.each($("#formBills  input[type!=submit]"), function(index, input) {
+    console.log("TCL: input", $(input).attr("name"));
+    if ($(input).attr("name") == billName.val()) inputExist = true;
+  });
+  console.log("TCL: inputExist", inputExist, inputExist != true);
+
+  if (inputExist == true) {
+    $("#billNameExist")
+      .text(`Bill for ${billName.val()} is already in list`)
+      .show();
+      return
+  }
+
+  if (validName && validNum && inputExist != true) {
+    $("#billNameExist").hide();
     $("#billContainer").append(renderBill(billName.val(), billAmount.val()));
     $("#billSubmit").show();
   }
 });
-
-function hasError(input, inputError, hasError) {
-  let errClass = "is-invalid";
-  if (hasError === true) {
-    input.addClass(errClass);
-    inputError.show();
-    return false;
-  } else {
-    input.removeClass(errClass);
-    inputError.hide();
-    return true;
-  }
-}
-
-function isValid(logic, input, inputError) {
-  let response = logic
-    ? hasError(input, inputError, true)
-    : hasError(input, inputError, false);
-  console.log("TCL: isValid -> response", response, input);
-  return response;
-}
-
-function renderBill(billName, billAmount) {
-  let NewBill = $("<div>", {
-    class: "col-sm-10",
-    id: billName
-  });
-  let label = $("<label>", {
-    text: billName
-  });
-  let inputGroup = $("<div>", {
-    class: "input-group"
-  });
-  let input = $("<input>", {
-    type: "number",
-    class: "form-control",
-    name: billName,
-    value: billAmount
-  });
-  let inputBtnDiv = $("<div>", {
-    class: "input-group-append"
-  });
-  let btnRemove = $("<button>", {
-    // type:'',
-    class: "btn btn-danger",
-    data_id: billName,
-    html: `<i class="fas fa-trash-alt"></i>`
-  }).click(function() {
-    $(`#${$(this).attr("data_id")}`).remove();
-  });
-
-  inputBtnDiv.append(btnRemove);
-  inputGroup.append([input, inputBtnDiv]);
-  NewBill.append([label, inputGroup]);
-  return NewBill;
-}
