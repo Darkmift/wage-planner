@@ -1,9 +1,3 @@
-.formGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 5px;
-}
-
 .grey-color {
   background-color: #eff0f1;
 }
@@ -11,8 +5,4 @@
 .margin-vertical {
   margin: 5px;
   padding: 10px 0;
-}
-
-.heightLimit {
-  max-height: 25vw !important;
 }

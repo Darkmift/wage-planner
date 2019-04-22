@@ -1,4 +1,3 @@
-
 export function hasError(input, inputError, hasError) {
   let errClass = "is-invalid";
   if (hasError === true) {
@@ -46,6 +45,13 @@ export function renderBill(billName, billAmount) {
   }).click(function(e) {
     e.preventDefault();
     $(`#${$(this).attr("data_id")}`).remove();
+    console.log(
+      `TCL: renderBill -> $(this).closest("form :input").length `,
+      $("#formBills :input").length
+    );
+    if ($("#formBills :input").length <= 4) {
+      $("#billSubmit").hide();
+    }
   });
   inputBtnDiv.append(btnRemove);
   inputGroup.append([input, inputBtnDiv]);
