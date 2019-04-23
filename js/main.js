@@ -1,6 +1,6 @@
 import { DataStore } from "./Data.js";
-import { hasError, isValid, renderBill, addInput } from "./helpers.js";
-
+import { hasError, isValid, addInput } from "./helpers.js";
+import { renderBill } from "./renderBill.js";
 $(".text-danger ,.text-warning, #billSubmit").hide();
 /*** */
 $("#incomeInput").val("1500");
@@ -73,9 +73,9 @@ $("#addBill").click(function(e) {
   let validDueDate = isValid(billDueDateIsNaN, billDueDate, billDueDateError);
   let inputExist = false;
 
-  $.each($("#formBills  input[type!=submit]"), function(index, input) {
-    if ($(input).attr("name") == billName.val()) inputExist = true;
-  });
+  if($("#" + billName.val()).length != 0) {
+    inputExist = true;
+  }
 
   if (inputExist == true) {
     $("#billNameExist")
