@@ -22,13 +22,13 @@ export function isValid(logic, input, inputError) {
   return response;
 }
 
-export function renderBill(billName, billAmount) {
+export function renderBill(billName, billAmount, billDueDate) {
   let NewBill = $("<div>", {
     class: "col-sm-10",
     id: billName
   });
   let label = $("<label>", {
-    text: billName
+    text: `${billName} bill is due on: ${billDueDate}`
   });
   let inputGroup = $("<div>", {
     class: "input-group"

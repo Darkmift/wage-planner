@@ -22,7 +22,9 @@ console.log("TCL: bills.length", bills);
 
 if (Object.keys(bills).length) {
   for (let bill in bills) {
-    $("#billContainer").append(renderBill(bill, bills[bill]));
+    $("#billContainer").append(
+      renderBill(bill, bills[bill].amount, bills[bill].billDueDate)
+    );
   }
   $("#instructions").hide();
   $("#billNameExist").hide();
@@ -59,11 +61,16 @@ $("#addBill").click(function(e) {
   }
   let billName = $("#billName");
   let billAmount = $("#billAmount");
+  let billDueDate = $("#billDate");
   let billNameError = $("#billNameError");
   let billAmountError = $("#billAmountError");
+  let billDueDateError = $("#billDueDateError");
+
+  let billDueDateIsNaN = isNaN(Date.parse(billDueDate.val()));
 
   let validName = isValid(billName.val().length < 2, billName, billNameError);
   let validNum = isValid(billAmount.val() < 1, billAmount, billAmountError);
+  let validDueDate = isValid(billDueDateIsNaN, billDueDate, billDueDateError);
   let inputExist = false;
 
   $.each($("#formBills  input[type!=submit]"), function(index, input) {
@@ -75,13 +82,17 @@ $("#addBill").click(function(e) {
       .text(`Bill for ${billName.val()} is already in list`)
       .show();
     return;
+  } else {
+    $("#billNameExist").hide();
   }
 
-  if (validName && validNum && inputExist != true) {
-    DB.setBill(billName.val(), billAmount.val());
+  if (validName && validNum && validDueDate && inputExist != true) {
+    DB.setBill(billName.val(), billAmount.val(), billDueDate.val());
     $("#instructions").hide();
     $("#billNameExist").hide();
-    $("#billContainer").append(renderBill(billName.val(), billAmount.val()));
+    $("#billContainer").append(
+      renderBill(billName.val(), billAmount.val(), billDueDate.val())
+    );
     $("#billSubmit").show();
   }
 });

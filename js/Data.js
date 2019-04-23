@@ -48,8 +48,10 @@ export class DataStore {
     this.saveData();
   }
 
-  setBill(billname, billAmount) {
-    this.storage.bills[billname] = billAmount;
+  setBill(billname, billAmount, billDueDate) {
+    this.storage.bills[billname] = {};
+    this.storage.bills[billname].amount = billAmount;
+    this.storage.bills[billname].billDueDate = billDueDate;
     this.saveData();
   }
 

@@ -57,11 +57,15 @@
                             </span>
                         </div>
                         <!-- row 3 billname/billamount -->
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <label>Bill name</label>
                             <input type="text" class="form-control" id="billName" />
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
+                            <label>Bill due date</label>
+                            <input type="date" class="form-control" id="billDate" />
+                        </div>
+                        <div class="col-sm-4">
                             <label>Bill amount</label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="billAmount">
@@ -73,23 +77,26 @@
                             </div>
                         </div>
                         <!-- row 4 billname/billamount errors -->
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <span>
                                 <small id="billNameExist" style="font-weight:bold" class="text-warning">
                                     [placeholder]
                                 </small>
-                                &nbsp;
-                            </span>
-                        </div>
-                        <div class="col-sm-6">
-                            <span>
                                 <small id="billNameError" class="text-danger">
                                     Bill name must be 4 characters long.
                                 </small>
                                 &nbsp;
                             </span>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
+                            <span>
+                                <small id="billDueDateError" class="text-danger">
+                                    Please add a vaild date.
+                                </small>
+                                &nbsp;
+                            </span>
+                        </div>
+                        <div class="col-sm-4">
                             <span>
                                 <small id="billAmountError" class="text-danger">
                                     Please add bill amount.
