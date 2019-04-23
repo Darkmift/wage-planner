@@ -1,3 +1,7 @@
+import { DataStore } from "./Data.js";
+
+var DB = new DataStore();
+
 export function hasError(input, inputError, hasError) {
   let errClass = "is-invalid";
   if (hasError === true) {
@@ -44,11 +48,9 @@ export function renderBill(billName, billAmount) {
     html: `<i class="fas fa-trash-alt"></i>`
   }).click(function(e) {
     e.preventDefault();
-    $(`#${$(this).attr("data_id")}`).remove();
-    console.log(
-      `TCL: renderBill -> $(this).closest("form :input").length `,
-      $("#formBills :input").length
-    );
+    let id = $(this).attr("data_id");
+    $(`#${id}`).remove();
+    DB.removeBill(id);
     if ($("#formBills :input").length <= 4) {
       $("#billSubmit").hide();
     }
@@ -57,4 +59,8 @@ export function renderBill(billName, billAmount) {
   inputGroup.append([input, inputBtnDiv]);
   NewBill.append([label, inputGroup]);
   return NewBill;
+}
+
+export function addInput(target, value) {
+  target.val(value).css("background-color", "#9effa6");
 }

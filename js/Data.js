@@ -31,7 +31,6 @@ export class DataStore {
   }
 
   getData() {
-    console.log("TCL: DataStore", this.storage);
     return this.storage;
   }
 
@@ -52,5 +51,12 @@ export class DataStore {
   setBill(billname, billAmount) {
     this.storage.bills[billname] = billAmount;
     this.saveData();
+  }
+
+  removeBill(billname) {
+    if (billname in this.storage.bills) {
+      delete this.storage.bills[billname];
+      this.saveData();
+    }
   }
 }

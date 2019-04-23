@@ -1,6 +1,7 @@
-import { hasError, isValid, renderBill } from "./helpers.js";
 import { DataStore } from "./Data.js";
+import { hasError, isValid, renderBill, addInput } from "./helpers.js";
 
+$(".text-danger ,.text-warning, #billSubmit").hide();
 /*** */
 $("#incomeInput").val("1500");
 $("#payDateInput").val("2019-04-18");
@@ -9,15 +10,26 @@ $("#billAmount").val("525");
 /*** */
 
 var DB = new DataStore();
+let storedData = DB.getData();
 
-DB.getData();
+console.log("TCL: DB.getData();", DB.getData());
 
-let income = $("#incomeInput");
+var { income, paydate, bills } = storedData;
+
+addInput($("#income"), income);
+addInput($("#payDate"), paydate);
+
+for (let bill in bills) {
+  $("#instructions").hide();
+  $("#billNameExist").hide();
+  $("#billContainer").append(renderBill(bill, bills[bill]));
+  $("#billSubmit").show();
+}
+
+income = $("#incomeInput");
 let payDate = $("#payDateInput");
 let incomeError = $("#incomeError");
 let payDayError = $("#payDayError");
-
-$(".text-danger ,.text-warning, #billSubmit").hide();
 
 $("input").focus(function(e) {
   $(this).removeClass("is-invalid");
@@ -27,15 +39,11 @@ $("#incomeAdd").click(function(e) {
   let dateIsNaN = isNaN(Date.parse(payDate.val()));
   //isValid 1st param "hasError" - true if error
   if (isValid(income.val() < 1, income, incomeError)) {
-    $("#income")
-      .val(income.val())
-      .css("background-color", "#9effa6");
+    addInput($("#income"), income.val());
     DB.setIncome(income.val());
   }
   if (isValid(dateIsNaN, payDate, payDayError)) {
-    $("#payDate")
-      .val(payDate.val())
-      .css("background-color", "#9effa6");
+    addInput($("#payDate"), payDate.val());
     DB.setPayDate(payDate.val());
   }
 });
