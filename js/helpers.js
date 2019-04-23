@@ -37,6 +37,7 @@ export function renderBill(billName, billAmount) {
     type: "number",
     class: "form-control",
     name: billName,
+    disabled:true,
     value: billAmount
   });
   let inputBtnDiv = $("<div>", {

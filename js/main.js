@@ -12,17 +12,20 @@ $("#billAmount").val("525");
 var DB = new DataStore();
 let storedData = DB.getData();
 
-console.log("TCL: DB.getData();", DB.getData());
+console.log("TCL: DB.getData();", DB.getData().bills);
 
 var { income, paydate, bills } = storedData;
 
 addInput($("#income"), income);
 addInput($("#payDate"), paydate);
+console.log("TCL: bills.length", bills);
 
-for (let bill in bills) {
+if (Object.keys(bills).length) {
+  for (let bill in bills) {
+    $("#billContainer").append(renderBill(bill, bills[bill]));
+  }
   $("#instructions").hide();
   $("#billNameExist").hide();
-  $("#billContainer").append(renderBill(bill, bills[bill]));
   $("#billSubmit").show();
 }
 
