@@ -11,14 +11,11 @@ $("#billAmount").val("525");
 
 var DB = new DataStore();
 let storedData = DB.getData();
-
-console.log("TCL: DB.getData();", DB.getData().bills);
-
+console.log("TCL: storedData", storedData);
 var { income, paydate, bills } = storedData;
 
 addInput($("#income"), income);
 addInput($("#payDate"), paydate);
-console.log("TCL: bills.length", bills);
 
 if (Object.keys(bills).length) {
   for (let bill in bills) {
@@ -73,7 +70,7 @@ $("#addBill").click(function(e) {
   let validDueDate = isValid(billDueDateIsNaN, billDueDate, billDueDateError);
   let inputExist = false;
 
-  if($("#" + billName.val()).length != 0) {
+  if ($("#" + billName.val()).length != 0) {
     inputExist = true;
   }
 
