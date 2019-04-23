@@ -37,7 +37,7 @@ export function renderBill(billName, billAmount) {
     type: "number",
     class: "form-control",
     name: billName,
-    disabled:true,
+    disabled: true,
     value: billAmount
   });
   let inputBtnDiv = $("<div>", {
@@ -56,7 +56,20 @@ export function renderBill(billName, billAmount) {
       $("#billSubmit").hide();
     }
   });
-  inputBtnDiv.append(btnRemove);
+  let btnEdit = $("<button>", {
+    class: "btn btn-warning",
+    data_edit: billName,
+    html: `<i class="fas fa-edit"></i>`
+  }).click(function(e) {
+    e.preventDefault();
+    if ($(this).hasClass("btn-warning")) {
+      return editOpen($(this));
+    }
+    editSave($(this));
+    return;
+  });
+
+  inputBtnDiv.append(btnEdit, btnRemove);
   inputGroup.append([input, inputBtnDiv]);
   NewBill.append([label, inputGroup]);
   return NewBill;
@@ -64,4 +77,29 @@ export function renderBill(billName, billAmount) {
 
 export function addInput(target, value) {
   target.val(value).css("background-color", "#9effa6");
+}
+
+function editOpen(btn) {
+  btn.html(`<i class="fas fa-save"></i>`);
+  btn.removeClass("btn-warning");
+  btn.addClass("btn-success");
+  console.log(
+    `TCL: editOpen ->   btn.prev("input")`,
+    btn.closest(".input-group").find("input")
+  );
+  btn
+    .closest(".input-group")
+    .find("input")
+    .removeAttr("disabled");
+  return;
+}
+
+function editSave(btn) {
+  btn.html(`<i class="fas fa-edit"></i>`);
+  btn.removeClass("btn-success");
+  btn.addClass("btn-warning");
+  var editInput = btn.closest(".input-group").find("input");
+  editInput.attr("disabled", true);
+  DB.setBill(editInput.attr("name"), editInput.val());
+  return;
 }
